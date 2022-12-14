@@ -1,0 +1,31 @@
+<h3 style="font-weight: normal">Search results for <strong><%= @query %></strong>:</h3>
+
+<% if @results.size > 0 %>
+  <table class="table table-results table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Product</th>
+        <th>Flavor</th>
+        <th>Detail</th>
+        <th>Published Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result[:brand] %></td>
+        <td><%= result[:product] %></td>
+        <td><%= result[:flavor] %></td>
+        <td><%= result[:detail] %></td>
+        <td><%= Date.parse(result[:published_date]).strftime('%m/%d/%Y') rescue nil %></td>
+      </tr>  
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+    <p>No results were found. Please, double check to ensure you entered the correct search query.</p>
+
+    <p>If you cannot find a particular product on this list or if you have any questions, contact: <a href="mailto:flavoredtobacco@cityofchicago.org">flavoredtobacco@cityofchicago.org</a>.</p>
+  </section>
+<% end %>
